@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sophie's Glow-Up Plan 💙</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --unc: #4B9CD3; --unc-dark: #13294B; --zta: #2A9D8F; --zta-light: #52B6A8;
+  --cream: #FAF6EF; --warm: #F2E8D5; --rose: #E8937A; --gold: #C9A84C;
+  --muted: #7a7060; --deep: #1a1610; --border: rgba(75,156,211,0.15);
+  --surface: #ffffff; --surface2: #F5F0E8;
+}
+body { background:var(--cream); color:var(--deep); font-family:'DM Sans',sans-serif; font-weight:300; min-height:100vh; }
+body::before { content:''; position:fixed; inset:0; background-image:radial-gradient(circle at 20% 20%,rgba(75,156,211,0.04) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(42,157,143,0.04) 0%,transparent 50%); pointer-events:none; z-index:0; }
+
+/* HEADER */
+.header-lattice { height:8px; background:repeating-linear-gradient(90deg,var(--unc) 0px,var(--unc) 12px,var(--zta) 12px,var(--zta) 24px,var(--unc-dark) 24px,var(--unc-dark) 28px,var(--gold) 28px,var(--gold) 30px,var(--unc-dark) 30px,var(--unc-dark) 34px,var(--zta) 34px,var(--zta) 46px,var(--unc) 46px,var(--unc) 58px,var(--unc-dark) 58px,var(--unc-dark) 60px); }
+header { background:var(--unc-dark); color:white; position:relative; overflow:hidden; }
+.header-pattern { position:absolute; inset:0; background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(75,156,211,0.06) 30px,rgba(75,156,211,0.06) 31px); }
+.header-inner { padding:52px 40px 48px; text-align:center; position:relative; z-index:1; }
+.header-badges { display:flex; justify-content:center; gap:10px; margin-bottom:28px; flex-wrap:wrap; }
+.hbadge { font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; padding:5px 14px; border-radius:20px; font-weight:600; }
+.hb-unc { background:var(--unc); color:white; }
+.hb-zta { background:var(--zta); color:white; }
+.hb-love { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); }
+header h1 { font-family:'Libre Baskerville',serif; font-size:clamp(2.4rem,6vw,4rem); font-weight:400; line-height:1.15; margin-bottom:12px; color:white; }
+header h1 .name { color:var(--unc); font-style:italic; }
+.header-sub { color:rgba(255,255,255,0.5); font-size:0.9rem; margin-bottom:32px; }
+.header-pills { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+.pill { padding:7px 18px; border-radius:20px; font-size:0.78rem; font-weight:500; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); }
+
+/* LOVE NOTE */
+.love-note { background:linear-gradient(135deg,var(--unc-dark) 0%,#1e3a5f 100%); color:white; padding:28px 36px; text-align:center; border-bottom:3px solid var(--unc); }
+.love-note p { font-family:'Libre Baskerville',serif; font-style:italic; font-size:1.05rem; color:rgba(255,255,255,0.82); max-width:640px; margin:0 auto; line-height:1.8; }
+.love-note .sig { margin-top:12px; font-size:0.8rem; color:var(--unc); font-style:normal; font-family:'DM Sans',sans-serif; letter-spacing:2px; text-transform:uppercase; }
+
+/* LAYOUT */
+.container { max-width:980px; margin:0 auto; padding:48px 24px; position:relative; z-index:1; }
+
+/* TABS */
+.tab-nav { display:flex; gap:4px; background:var(--unc-dark); border-radius:14px; padding:5px; margin-bottom:36px; flex-wrap:wrap; position:sticky; top:12px; z-index:100; box-shadow:0 4px 24px rgba(19,41,75,0.18); }
+.tab { flex:1; min-width:68px; padding:10px 10px; border:none; background:transparent; color:rgba(255,255,255,0.4); font-family:'DM Sans',sans-serif; font-size:0.76rem; font-weight:500; cursor:pointer; border-radius:9px; transition:all 0.2s; }
+.tab:hover { color:rgba(255,255,255,0.7); }
+.tab.active { background:var(--unc); color:white; }
+.tab-content { display:none; }
+.tab-content.active { display:block; animation:fadeIn 0.3s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+
+/* SECTION HEADERS */
+.sh { margin-bottom:24px; }
+.sh-eye { font-size:0.68rem; letter-spacing:3px; text-transform:uppercase; color:var(--unc); font-weight:600; margin-bottom:4px; }
+.sh-title { font-family:'Libre Baskerville',serif; font-size:1.7rem; font-weight:400; color:var(--unc-dark); }
+
+/* CARDS */
+.card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:26px; margin-bottom:16px; box-shadow:0 2px 12px rgba(19,41,75,0.05); }
+.card-unc { border-left:4px solid var(--unc); }
+.card-zta { border-left:4px solid var(--zta); }
+.card-gold { border-left:4px solid var(--gold); }
+.card-rose { border-left:4px solid var(--rose); }
+
+/* BIG CHEAT SHEET */
+.bigcheat { background:var(--unc-dark); color:white; border-radius:18px; padding:36px; position:relative; overflow:hidden; }
+.bigcheat::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:var(--unc); opacity:0.1; }
+.bigcheat::after { content:''; position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; border-radius:50%; background:var(--zta); opacity:0.08; }
+.bigcheat h2 { font-family:'Libre Baskerville',serif; font-size:1.6rem; font-weight:400; margin-bottom:6px; }
+.bigcheat .bsub { color:rgba(255,255,255,0.45); font-size:0.82rem; margin-bottom:28px; }
+.cheat-cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:20px; position:relative; z-index:1; }
+.cc-title { font-size:0.68rem; letter-spacing:3px; text-transform:uppercase; margin-bottom:12px; font-weight:600; }
+.cc-item { display:flex; align-items:flex-start; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.82rem; line-height:1.5; color:rgba(255,255,255,0.72); }
+.cc-item:last-child { border-bottom:none; }
+.cc-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:6px; }
+
+/* CHEAT GRID */
+.cheat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:24px; }
+.cheat-block { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; border-top:4px solid; }
+.cheat-block h3 { font-family:'Libre Baskerville',serif; font-size:0.98rem; margin-bottom:14px; }
+.cheat-item { display:flex; align-items:flex-start; gap:10px; padding:7px 0; border-bottom:1px solid rgba(0,0,0,0.05); font-size:0.82rem; line-height:1.5; }
+.cheat-item:last-child { border-bottom:none; }
+.cheat-check { color:var(--zta); font-weight:700; flex-shrink:0; }
+
+/* DIAG */
+.diag-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-bottom:28px; }
+.diag-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; border-top:3px solid; box-shadow:0 2px 10px rgba(19,41,75,0.04); }
+.diag-icon { font-size:1.6rem; margin-bottom:10px; }
+.diag-title { font-weight:600; font-size:0.88rem; margin-bottom:6px; }
+.diag-text { font-size:0.8rem; color:var(--muted); line-height:1.6; }
+.diag-sci { font-size:0.75rem; margin-top:8px; padding-top:8px; border-top:1px solid rgba(0,0,0,0.06); color:var(--unc); font-style:italic; }
+
+/* MEAL ROWS */
+.day-label { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--unc); font-weight:600; margin:20px 0 10px; display:flex; align-items:center; gap:12px; }
+.day-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.meal-row { display:grid; grid-template-columns:72px 1fr auto; gap:14px; align-items:start; padding:13px 18px; background:var(--surface); border-radius:12px; margin-bottom:8px; border:1px solid var(--border); transition:border-color 0.2s; }
+.meal-row:hover { border-color:var(--unc); }
+.meal-time { font-size:0.75rem; color:var(--muted); font-weight:500; padding-top:2px; }
+.meal-name { font-size:0.88rem; font-weight:500; margin-bottom:3px; color:var(--unc-dark); }
+.meal-notes { font-size:0.78rem; color:var(--muted); line-height:1.5; }
+.meal-hi { color:var(--zta); font-weight:500; }
+.mtag { font-size:0.68rem; padding:3px 10px; border-radius:10px; font-weight:600; white-space:nowrap; align-self:start; }
+.mt-fiber { background:rgba(42,157,143,0.1); color:var(--zta); }
+.mt-protein { background:rgba(201,168,76,0.12); color:var(--gold); }
+.mt-hydrate { background:rgba(75,156,211,0.1); color:var(--unc); }
+.mt-energy { background:rgba(232,147,122,0.12); color:var(--rose); }
+.mt-cn { background:rgba(19,41,75,0.08); color:var(--unc-dark); }
+
+/* FIBER GRID */
+.fiber-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(165px,1fr)); gap:14px; }
+.fiber-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px; text-align:center; transition:transform 0.2s,box-shadow 0.2s; }
+.fiber-card:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(75,156,211,0.12); }
+.fiber-emoji { font-size:1.8rem; margin-bottom:8px; }
+.fiber-name { font-weight:600; font-size:0.84rem; margin-bottom:3px; color:var(--unc-dark); }
+.fiber-g { font-size:0.77rem; color:var(--zta); font-weight:600; margin-bottom:5px; }
+.fiber-tip { font-size:0.73rem; color:var(--muted); line-height:1.5; }
+
+/* WORKOUT */
+.workout-day { display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(0,0,0,0.06); }
+.workout-day:last-child { border-bottom:none; }
+.wd-day { width:88px; font-weight:600; flex-shrink:0; font-size:0.81rem; }
+.wd-name { font-weight:600; margin-bottom:4px; color:var(--unc-dark); font-size:0.87rem; }
+.wd-detail { font-size:0.78rem; color:var(--muted); line-height:1.65; }
+.wd-note { color:var(--unc); font-size:0.75rem; margin-top:4px; font-style:italic; }
+
+/* HR ZONES */
+.hr-zone { display:grid; grid-template-columns:130px 1fr 80px; align-items:center; gap:12px; font-size:0.81rem; padding:5px 0; }
+.zone-name { color:var(--muted); font-size:0.78rem; }
+.zone-track { height:8px; background:rgba(0,0,0,0.06); border-radius:4px; overflow:hidden; }
+.zone-fill { height:100%; border-radius:4px; }
+.zone-range { text-align:right; font-weight:600; font-size:0.76rem; }
+
+/* VO2 */
+.vo2-label { display:flex; justify-content:space-between; font-size:0.79rem; color:var(--muted); margin-bottom:8px; }
+.vo2-track { height:12px; background:rgba(0,0,0,0.06); border-radius:6px; overflow:hidden; }
+.vo2-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,var(--unc),var(--zta)); }
+
+/* SWAP TABLE */
+.swap-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.81rem; padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.05); }
+.swap-row:last-child { border-bottom:none; }
+.swap-out { color:#c0392b; }
+.swap-in { color:var(--zta); }
+
+/* GOALS */
+.goals-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:14px; }
+.goal-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; text-align:center; }
+.goal-num { font-family:'Libre Baskerville',serif; font-size:2.6rem; font-weight:700; line-height:1; margin-bottom:5px; }
+.goal-lbl { font-size:0.78rem; color:var(--muted); }
+.goal-sub { font-size:0.72rem; color:var(--zta); margin-top:3px; font-weight:500; }
+
+/* PHASE CARDS */
+.phase-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; border-left:4px solid var(--unc); margin-bottom:12px; }
+.phase-card.p2 { border-left-color:var(--zta); }
+.phase-card.p3 { border-left-color:var(--gold); }
+.phase-name { font-weight:600; font-size:0.91rem; margin-bottom:3px; }
+.phase-wks { font-size:0.74rem; color:var(--muted); margin-bottom:8px; }
+.phase-desc { font-size:0.81rem; color:var(--muted); line-height:1.7; }
+
+/* TIP ROWS */
+.tip-row { display:flex; gap:14px; align-items:flex-start; padding:14px 18px; background:var(--surface); border-radius:12px; border:1px solid var(--border); margin-bottom:10px; }
+.tip-icon { font-size:1.2rem; flex-shrink:0; margin-top:1px; }
+.tip-bold { font-weight:600; color:var(--unc-dark); margin-bottom:2px; font-size:0.87rem; }
+.tip-text { font-size:0.82rem; color:var(--muted); line-height:1.65; }
+
+/* KITCHEN BANNER */
+.kitchen-banner { background:linear-gradient(135deg,rgba(42,157,143,0.07) 0%,rgba(75,156,211,0.07) 100%); border:1px solid rgba(42,157,143,0.22); border-radius:14px; padding:22px 26px; margin-bottom:16px; display:flex; gap:16px; align-items:flex-start; }
+.kb-icon { font-size:2rem; flex-shrink:0; }
+.kb-title { font-weight:600; color:var(--zta); margin-bottom:5px; font-size:0.91rem; }
+.kb-text { font-size:0.81rem; color:var(--muted); line-height:1.65; }
+
+/* WATER */
+.water-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* FOOTER */
+footer { background:var(--unc-dark); color:rgba(255,255,255,0.45); text-align:center; padding:32px 24px; font-size:0.8rem; }
+footer .heart { color:var(--rose); }
+footer .unc-c { color:var(--unc); }
+
+@media(max-width:620px){
+  .water-grid,.cheat-cols { grid-template-columns:1fr; }
+  .meal-row { grid-template-columns:65px 1fr; }
+  .mtag { display:none; }
+  .swap-row { grid-template-columns:1fr; }
+  .hr-zone { grid-template-columns:100px 1fr 70px; }
+  .header-inner { padding:40px 20px 36px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header-lattice"></div>
+<header>
+  <div class="header-pattern"></div>
+  <div class="header-inner">
+    <div class="header-badges">
+      <span class="hbadge hb-unc">🐏 UNC Chapel Hill</span>
+      <span class="hbadge hb-zta">💛 Zeta Tau Alpha</span>
+      <span class="hbadge hb-love">Made with love by Nathan</span>
+    </div>
+    <h1><span class="name">Sophie's</span> Glow-Up Plan ♥</h1>
+    <p class="header-sub">Your personal roadmap to more energy, better digestion, and the body you want — built around your actual life.</p>
+    <div class="header-pills">
+      <span class="pill">⚡ Real Energy</span>
+      <span class="pill">💧 Finally Pooping</span>
+      <span class="pill">🍑 Bubble Butt Shape</span>
+      <span class="pill">🧘 Knee-Safe</span>
+      <span class="pill">📈 VO₂ 34 → 45+</span>
+    </div>
+  </div>
+</header>
+
+<div class="love-note">
+  <p>"Sophie, I put this together because I want you to feel as incredible as you are. You were a competitive athlete your whole life — your body knows how to perform. It just needs the right fuel and the right plan. This isn't about being perfect. It's about feeling like yourself again."</p>
+  <div class="sig">— Nathan 💙</div>
+</div>
+
+<div class="container">
+
+<div class="tab-nav">
+  <button class="tab active" onclick="showTab('cheat')">⚡ Quick Start</button>
+  <button class="tab" onclick="showTab('why')">🔬 Why This</button>
+  <button class="tab" onclick="showTab('diet')">🥢 Diet</button>
+  <button class="tab" onclick="showTab('fiber')">🌿 Fiber</button>
+  <button class="tab" onclick="showTab('hydration')">💧 Hydration</button>
+  <button class="tab" onclick="showTab('workout')">🏋️ Workout</button>
+  <button class="tab" onclick="showTab('goals')">🎯 Goals</button>
+</div>
+
+<!-- ═══ QUICK START ═══ -->
+<div id="tab-cheat" class="tab-content active">
+  <div class="sh"><div class="sh-eye">Start Here</div><div class="sh-title">Sophie's Daily Cheat Sheet</div></div>
+  <p style="color:var(--muted);font-size:0.85rem;margin-bottom:28px;line-height:1.7;">Screenshot this tab. This is everything boiled down to what actually matters. You don't need to memorize the rest — just this.</p>
+
+  <div class="bigcheat">
+    <h2>Every Single Day</h2>
+    <p class="bsub">Listed in order of impact. These five habits are the whole plan, really.</p>
+    <div class="cheat-cols">
+      <div>
+        <div class="cc-title" style="color:var(--unc);">☀️ Morning</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--unc)"></div>16oz water the moment you wake up — before coffee</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--unc)"></div>Stir 1 tbsp chia seeds into your yogurt (tasteless)</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--unc)"></div>Coffee after eating, not before</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--unc)"></div>5-min knee exercises while coffee brews</div>
+      </div>
+      <div>
+        <div class="cc-title" style="color:var(--zta);">🌿 Food</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--zta)"></div>Lunch at the Ag: protein + 2 veggie sides</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--zta)"></div>Grab an orange or raspberries at the Ag</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--zta)"></div>3pm: dark choc almonds + water (not energy drink)</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--zta)"></div>Dinner: protein + veggies, or Chinese noodles + veg</div>
+      </div>
+      <div>
+        <div class="cc-title" style="color:var(--gold);">💧 All Day</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--gold)"></div>Fill your 40oz bottle twice — that's your water goal</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--gold)"></div>Max 2 coffees. Each one = 1 extra glass of water</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--gold)"></div>Set 3 phone reminders: 10am, 2pm, 6pm — drink water</div>
+        <div class="cc-item"><div class="cc-dot" style="background:var(--gold)"></div>Chia pudding in fridge before bed (2 min, done)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cheat-grid">
+    <div class="cheat-block" style="border-top-color:var(--unc);">
+      <h3 style="color:var(--unc);">🏋️ Gym Days (Mon + Fri)</h3>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Hip thrusts — the #1 bubble butt exercise</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Romanian deadlifts — glutes + hamstrings</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Cable kickbacks + abductor machine</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>No deep squats, no lunges (protecting your knees)</div>
+    </div>
+    <div class="cheat-block" style="border-top-color:var(--zta);">
+      <h3 style="color:var(--zta);">🚴 Bike HIIT (Tue)</h3>
+      <div class="cheat-item"><span class="cheat-check">✓</span>30 sec ALL OUT → 90 sec easy, 8 rounds</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Target HR: 175–200 BPM</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>This is what raises your VO₂ max</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Zero knee compression on the bike</div>
+    </div>
+    <div class="cheat-block" style="border-top-color:var(--rose);">
+      <h3 style="color:var(--rose);">🧘 Pilates (Wed)</h3>
+      <div class="cheat-item"><span class="cheat-check">✓</span>YouTube: Move with Nicole or Lottie Murphy</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Mat + resistance band, done in your dorm</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>This is knee rehab disguised as Pilates</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Rebuilds the knee muscle skating weakened</div>
+    </div>
+    <div class="cheat-block" style="border-top-color:var(--gold);">
+      <h3 style="color:var(--gold);">🔑 The 5 Non-Negotiables</h3>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Water before coffee — every morning</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Chia seeds in yogurt — every morning</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>2 veggie sides at the Ag — every lunch</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Almonds at 3pm — not an energy drink</div>
+      <div class="cheat-item"><span class="cheat-check">✓</span>Chia pudding in fridge — every night</div>
+    </div>
+  </div>
+
+  <div class="card card-unc" style="background:rgba(75,156,211,0.04);margin-top:8px;">
+    <div style="font-weight:600;color:var(--unc);margin-bottom:10px;">📱 Do This Right Now (2 minutes)</div>
+    <div style="font-size:0.83rem;color:var(--muted);line-height:1.8;">
+      1. Order or grab a 40oz water bottle (Stanley, Hydro Flask).<br>
+      2. Whole Foods / Target / Publix shopping list: <strong style="color:var(--unc-dark);">chia seeds · dark choc almonds · raspberries · resistance loop band (~$12 Amazon)</strong>.<br>
+      3. Set 3 phone alarms: <strong style="color:var(--unc-dark);">10am · 2pm · 6pm → "drink water"</strong>.<br>
+      4. Save on YouTube: <strong style="color:var(--unc-dark);">Move with Nicole · Lottie Murphy</strong>.<br>
+      5. Start tomorrow morning. That's it.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ WHY THIS ═══ -->
+<div id="tab-why" class="tab-content">
+  <div class="sh"><div class="sh-eye">The Science</div><div class="sh-title">What's Actually Going On in Your Body</div></div>
+  <p style="color:var(--muted);font-size:0.84rem;margin-bottom:24px;line-height:1.7;">You're pre-med, so you'll appreciate that there's a real mechanism behind every symptom — and a clean explanation for why these specific fixes work.</p>
+  <div class="diag-grid">
+    <div class="diag-card" style="border-top-color:var(--rose);">
+      <div class="diag-icon">😴</div>
+      <div class="diag-title">The Energy Crash Cycle</div>
+      <div class="diag-text">High-glycemic foods (pancake bites, fries, white rice noodles, hot dogs) spike blood glucose fast, trigger a large insulin response, then crash blood sugar below baseline — that 2pm wall where you need a nap or a Red Bull.</div>
+      <div class="diag-sci">Reactive hypoglycemia → cortisol spike → adenosine buildup → caffeine dependency to override it. The caffeine works short-term but accelerates the next crash. Fiber slows glucose absorption and flattens the spike entirely.</div>
+    </div>
+    <div class="diag-card" style="border-top-color:var(--gold);">
+      <div class="diag-icon">🚽</div>
+      <div class="diag-title">The Constipation Problem</div>
+      <div class="diag-text">Your diary shows roughly 3–5g of fiber per day. Women need 25g. Fiber feeds your gut microbiome and creates the bulk that activates peristalsis. Without it, colonic transit slows and the mucosa reabsorbs water from stool.</div>
+      <div class="diag-sci">Soluble fiber (chia, oats) forms a gel via water absorption → softens stool. Insoluble fiber (broccoli, raspberries) adds bulk → stimulates peristalsis. Both needed. Chia + adequate water will produce noticeable change within 3–5 days.</div>
+    </div>
+    <div class="diag-card" style="border-top-color:var(--unc);">
+      <div class="diag-icon">💧</div>
+      <div class="diag-title">Dehydration is Doing Most of This</div>
+      <div class="diag-text">Water appeared 3 times in your entire week of diary entries. You're eating high-sodium processed food and drinking 3+ coffees daily (caffeine inhibits ADH → forces renal water excretion). Even 1–2% body water deficit causes measurable fatigue, brain fog, and constipation.</div>
+      <div class="diag-sci">Dehydration reduces plasma volume → heart must increase cardiac output at the same workload → perceived exertion is higher → workouts feel harder. Your VO₂ is directly suppressed by this. Hydrating alone will improve your workout performance noticeably.</div>
+    </div>
+    <div class="diag-card" style="border-top-color:var(--zta);">
+      <div class="diag-icon">🦵</div>
+      <div class="diag-title">The Skater's Knee Pattern</div>
+      <div class="diag-text">Years of edge work creates specific imbalances: tight IT band (lateral hip and thigh), weak VMO (inner quad), and patellar maltracking. Any deep knee flexion — squats, lunges, stairs — compresses the lateral patellar facet against the trochlea.</div>
+      <div class="diag-sci">Terminal knee extensions directly recruit the VMO via terminal extension against resistance — the only knee position where VMO fires maximally. Pilates rebuilds this alongside hip stabilizers. Expect real pain reduction in 2–3 weeks of consistent work.</div>
+    </div>
+  </div>
+  <div class="card card-unc" style="background:rgba(75,156,211,0.04);">
+    <div style="font-weight:600;color:var(--unc-dark);margin-bottom:10px;">💡 The Good News</div>
+    <div style="font-size:0.83rem;color:var(--muted);line-height:1.8;">
+      Everything you're feeling has a clear, fixable cause. None of it is "just how you are." You were a competitive figure skater and cheerleader — your body's baseline is athletic performance. What you're experiencing is entirely nutritional and hydration-related. Fix those inputs, and the output changes fast.<br><br>
+      <strong style="color:var(--unc-dark);">Days 3–5:</strong> digestion improves. <strong style="color:var(--unc-dark);">Week 2:</strong> energy stabilizes. <strong style="color:var(--unc-dark);">Weeks 6–8:</strong> body composition changes visible. <strong style="color:var(--unc-dark);">Month 3–4:</strong> full athletic form.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DIET ═══ -->
+<div id="tab-diet" class="tab-content">
+  <div class="sh"><div class="sh-eye">Eating Plan</div><div class="sh-title">Sophie's Diet — Built Around Her Actual Life</div></div>
+
+  <div class="kitchen-banner">
+    <div class="kb-icon">🏠</div>
+    <div>
+      <div class="kb-title">🔓 Kitchen Unlocked Soon — This Changes Everything</div>
+      <div class="kb-text">When you go home, your parents' traditional Chinese cooking is genuinely some of the most nutritionally complete food on the planet. Longevity research consistently cites traditional Chinese diets — steamed proteins, stir-fried vegetables, broths, minimal processing — among the healthiest in the world. Embrace it. Noodles with vegetables and protein are a perfect meal. Request congee (great for gut healing), steamed fish + bok choy, stir-fried greens in garlic. You'll hit every target on this plan effortlessly.</div>
+    </div>
+  </div>
+
+  <div class="card card-rose" style="background:rgba(232,147,122,0.04);">
+    <div style="font-weight:600;margin-bottom:8px;">📋 Honest Read of Your Current Diary</div>
+    <div style="font-size:0.82rem;color:var(--muted);line-height:1.8;"><strong style="color:var(--unc-dark);">What's actually working:</strong> Yogurt + chicken sausage has protein and probiotics. Your Agora meals (tilapia + veg, BBQ chicken + green beans, chicken + broccoli) are legitimately solid. Chipotle with beans is one of your best meals. You eat a lot of chicken — great protein source.<br><br><strong style="color:var(--unc-dark);">The actual problem:</strong> Near-zero fiber, near-zero water, late-night fried food 5–6x/week, and energy drinks patching the energy crash that poor nutrition causes. A cycle — but an easy one to break with specific swaps.</div>
+  </div>
+
+  <div class="day-label">Every Morning</div>
+  <div class="meal-row"><div class="meal-time">On waking</div><div><div class="meal-name">16oz water — before anything else</div><div class="meal-notes">Fastest single change. Rehydrates after overnight fast, kick-starts gut motility. <span class="meal-hi">This alone starts fixing the constipation within days.</span></div></div><span class="mtag mt-hydrate">Hydrate</span></div>
+  <div class="meal-row"><div class="meal-time">~8:30 AM</div><div><div class="meal-name">Your yogurt + chicken sausage + <strong>1 tbsp chia seeds stirred in</strong></div><div class="meal-notes">Keep exactly what you do. Just add chia — tasteless in yogurt, <span class="meal-hi">+5g fiber instantly.</span> Coffee after eating reduces the cortisol spike that empty-stomach coffee causes.</div></div><span class="mtag mt-fiber">Fiber</span></div>
+
+  <div class="day-label">Lunch — The Ag, Every Day</div>
+  <div class="meal-row"><div class="meal-time">12–1 PM</div><div><div class="meal-name">Protein + 2 veggie sides + fruit</div><div class="meal-notes">The Ag already has what you need and it's paid for. <span class="meal-hi">Grilled chicken + broccoli + peas · Fish + Brussels sprouts + carrots · Chicken + lima beans + spinach salad.</span> Load the plate. Two veggie sides is the only rule.</div></div><span class="mtag mt-fiber">Fiber</span></div>
+  <div class="meal-row"><div class="meal-time">+ Fruit</div><div><div class="meal-name">Orange or raspberries</div><div class="meal-notes">Your favorites. Raspberries = highest-fiber of all common berries (8g/cup). Oranges also count toward hydration. Grab at the Ag or keep in your dorm fridge from Whole Foods / Publix.</div></div><span class="mtag mt-energy">Energy</span></div>
+
+  <div class="day-label">Afternoon Snack — Replace the Energy Drink</div>
+  <div class="meal-row"><div class="meal-time">3–4 PM</div><div><div class="meal-name">Dark chocolate almonds + big glass of water</div><div class="meal-notes">You already like these. <span class="meal-hi">Magnesium in almonds is a natural smooth muscle relaxant — directly aids gut motility.</span> Healthy fat = steady energy. This replaces the energy drink without the crash that follows.</div></div><span class="mtag mt-fiber">Fiber</span></div>
+
+  <div class="day-label">Dinner Options</div>
+  <div class="meal-row"><div class="meal-time">Option A</div><div><div class="meal-name">Dorm: Grilled chicken + microwaved broccoli + raw spinach</div><div class="meal-notes">TJ's microwaveable broccoli is already in your rotation. Add a handful of raw spinach from a bag — zero prep, eaten alongside anything. Whole Foods + Publix both carry great pre-marinated chicken.</div></div><span class="mtag mt-protein">Protein</span></div>
+  <div class="meal-row"><div class="meal-time">Option B 🥢</div><div><div class="meal-name">Chinese noodles with vegetables + protein</div><div class="meal-notes"><span class="meal-hi">This is your favorite and it's genuinely great.</span> Soba noodles (Whole Foods) have more fiber than rice noodles. Order takeout dan dan noodles or make instant noodles and stir in spinach + broccoli + a soft-boiled egg at the end. Noodles are not the problem — lack of vegetables with them is.</div></div><span class="mtag mt-cn">Chinese 🥢</span></div>
+  <div class="meal-row"><div class="meal-time">Option C</div><div><div class="meal-name">Sorority dinner / private chef night</div><div class="meal-notes"><span class="meal-hi">This is your best meal opportunity — a private chef means real whole food.</span> Load your plate with whatever vegetables are being served. Ask for extra greens. This is an advantage most college students don't have. Use it.</div></div><span class="mtag mt-protein">Protein</span></div>
+  <div class="meal-row"><div class="meal-time">Option D</div><div><div class="meal-name">Chipotle: bowl with rice + black beans + chicken + fajita veg + salsa</div><div class="meal-notes">Already one of your diary's best meals. Black beans = high fiber. Fajita veggies = free addition. <span class="meal-hi">Skip chips, ask for extra veggie toppings instead.</span></div></div><span class="mtag mt-fiber">Fiber</span></div>
+
+  <div class="day-label">Before Bed</div>
+  <div class="meal-row"><div class="meal-time">Before sleep</div><div><div class="meal-name">Overnight chia pudding: 3 tbsp chia + ½ cup milk or almond milk + raspberries → fridge</div><div class="meal-notes">Takes 2 minutes. Ready in the morning as a snack or add-on. <span class="meal-hi">~10g fiber per serving.</span> This is also the "oats" implementation — chia pudding has higher fiber, no cooking, and works perfectly in a dorm.</div></div><span class="mtag mt-fiber">Fiber</span></div>
+
+  <div class="card" style="background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.2);margin-top:8px;">
+    <div style="font-weight:600;color:var(--gold);margin-bottom:8px;">🌙 Late Night Ag Runs</div>
+    <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;">Keep them — they're social. Just cap at 2–3x/week instead of every night. When you go: chicken over hot dogs, water with it, fries every other time instead of every time. On other nights: TruFru + almonds is a legitimate late snack. Your gut will thank you in the morning.</div>
+  </div>
+</div>
+
+<!-- ═══ FIBER ═══ -->
+<div id="tab-fiber" class="tab-content">
+  <div class="sh"><div class="sh-eye">Sophie's Fiber List</div><div class="sh-title">Foods She Actually Likes — All High Fiber</div></div>
+  <div class="card card-zta" style="background:rgba(42,157,143,0.04);margin-bottom:24px;">
+    <div style="font-weight:600;color:var(--zta);margin-bottom:8px;">🌿 Target: 25g/day. Current: ~5g. Add gradually — one new food per week to avoid bloating.</div>
+    <div style="font-size:0.82rem;color:var(--muted);">Going from 5g to 25g overnight = painful bloating. Ramp up slowly over 3 weeks. As fiber increases, water must increase with it — fiber needs water to work.</div>
+  </div>
+  <div class="fiber-grid">
+    <div class="fiber-card"><div class="fiber-emoji">🌱</div><div class="fiber-name">Chia Seeds</div><div class="fiber-g">10g / 2 tbsp</div><div class="fiber-tip">Priority #1. Stir into yogurt, pudding, noodles. Completely tasteless when mixed in.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🫐</div><div class="fiber-name">Raspberries</div><div class="fiber-g">8g / 1 cup</div><div class="fiber-tip">Favorite berry. Highest-fiber of all common fruits. Keep in dorm fridge from Whole Foods.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🫘</div><div class="fiber-name">Lima Beans</div><div class="fiber-g">7g / ½ cup</div><div class="fiber-tip">The Ag has these. One of the highest-fiber items available to you. Side at lunch whenever possible.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🥦</div><div class="fiber-name">Broccoli</div><div class="fiber-g">5g / 1 cup</div><div class="fiber-tip">You love it! Agora + TJ's microwaveable bags. Add to noodle dishes too — classically Chinese.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🥙</div><div class="fiber-name">Brussels Sprouts</div><div class="fiber-g">4g / ½ cup</div><div class="fiber-tip">Grab at the Ag when available. High in vitamin C + fiber + compounds that feed good gut bacteria.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🟢</div><div class="fiber-name">Peas</div><div class="fiber-g">4g / ½ cup</div><div class="fiber-tip">Ag staple. Easy add-on to anything. Also protein. Classic in Chinese cooking — goes great in noodles.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🍊</div><div class="fiber-name">Oranges</div><div class="fiber-g">4g + hydration</div><div class="fiber-tip">Favorite fruit. Also counts toward hydration. Perfect at lunch or as afternoon snack.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🌰</div><div class="fiber-name">Dark Choc Almonds</div><div class="fiber-g">4g / 1 oz</div><div class="fiber-tip">Already your snack. Magnesium helps gut motility. Replaces energy drinks without the crash.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🥕</div><div class="fiber-name">Carrots (cooked)</div><div class="fiber-g">3g / ½ cup</div><div class="fiber-tip">At the Ag cooked. Naturally sweet. Great in noodle dishes. Very Chinese-cooking-friendly.</div></div>
+    <div class="fiber-card"><div class="fiber-emoji">🥬</div><div class="fiber-name">Spinach</div><div class="fiber-g">3g / 2 cups</div><div class="fiber-tip">Zero prep — eat raw from the bag. Stir into noodles at the end. Whole Foods has great bags.</div></div>
+  </div>
+  <div class="card" style="background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.2);margin-top:20px;">
+    <div style="font-weight:600;color:var(--gold);margin-bottom:12px;">📅 3-Week Ramp-Up</div>
+    <div style="font-size:0.83rem;display:grid;gap:0;">
+      <div style="display:flex;gap:14px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);"><span style="color:var(--gold);font-weight:700;width:68px;flex-shrink:0;">Week 1</span><span style="color:var(--muted);">Chia in yogurt every morning + 1 fruit at Ag lunch. That's it. Drink more water.</span></div>
+      <div style="display:flex;gap:14px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);"><span style="color:var(--gold);font-weight:700;width:68px;flex-shrink:0;">Week 2</span><span style="color:var(--muted);">Add 2 veggie sides at every Ag lunch. Dark choc almonds replace the afternoon energy drink.</span></div>
+      <div style="display:flex;gap:14px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);"><span style="color:var(--gold);font-weight:700;width:68px;flex-shrink:0;">Week 3</span><span style="color:var(--muted);">Add raw spinach to dinner. Start overnight chia pudding 3x/week.</span></div>
+      <div style="display:flex;gap:14px;padding:10px 0;"><span style="color:var(--zta);font-weight:700;width:68px;flex-shrink:0;">Week 4+</span><span style="color:var(--muted);">All habits locked. 20–25g fiber/day. Digestion clearly better. Energy stable. You're there.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HYDRATION ═══ -->
+<div id="tab-hydration" class="tab-content">
+  <div class="sh"><div class="sh-eye">Hydration</div><div class="sh-title">2.5–3 Liters Daily — This Fixes Everything</div></div>
+  <div class="card card-unc" style="background:rgba(75,156,211,0.04);margin-bottom:24px;">
+    <div style="font-size:0.83rem;color:var(--muted);line-height:1.8;">Water appeared maybe 3 times in your entire diary week. You're eating high-sodium food and drinking 3+ coffees daily (caffeine inhibits ADH, forcing your kidneys to excrete more water). Even 1–2% body water deficit produces measurable fatigue, brain fog, and constipation. <strong style="color:var(--unc-dark);">This is the easiest change with the fastest payoff. A 40oz bottle filled twice a day = done.</strong></div>
+  </div>
+  <div class="water-grid">
+    <div class="card">
+      <div style="font-weight:600;color:var(--unc);margin-bottom:14px;">⏰ Daily Schedule</div>
+      <div style="font-size:0.82rem;display:grid;gap:0;">
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><span style="color:var(--unc);width:78px;flex-shrink:0;font-weight:500;">Wake up</span><span style="color:var(--muted);">16oz — before coffee, before anything.</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><span style="color:var(--unc);width:78px;flex-shrink:0;font-weight:500;">Breakfast</span><span style="color:var(--muted);">8oz with or after eating. Coffee after this.</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><span style="color:var(--unc);width:78px;flex-shrink:0;font-weight:500;">Lunch</span><span style="color:var(--muted);">16oz with your Ag meal.</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><span style="color:var(--unc);width:78px;flex-shrink:0;font-weight:500;">Afternoon</span><span style="color:var(--muted);">16oz with your almond snack at 3pm.</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><span style="color:var(--unc);width:78px;flex-shrink:0;font-weight:500;">Workout</span><span style="color:var(--muted);">16oz during exercise. Performance depends on this.</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><span style="color:var(--unc);width:78px;flex-shrink:0;font-weight:500;">Dinner</span><span style="color:var(--muted);">16oz with dinner.</span></div>
+        <div style="display:flex;gap:12px;padding:9px 0;"><span style="color:var(--unc);width:78px;flex-shrink:0;font-weight:500;">Bed</span><span style="color:var(--muted);">8oz when making the chia pudding.</span></div>
+      </div>
+    </div>
+    <div style="display:grid;gap:14px;align-content:start;">
+      <div class="card" style="background:rgba(75,156,211,0.04);border-color:rgba(75,156,211,0.2);">
+        <div style="font-weight:600;color:var(--unc);margin-bottom:8px;">☕ Caffeine Rules</div>
+        <div style="font-size:0.81rem;color:var(--muted);line-height:1.75;">Don't go cold turkey — you're pre-med with a heavy courseload. That's not realistic.<br><br><strong style="color:var(--unc-dark);">Max 2 coffees/day.</strong> Morning + before 2pm. No energy drinks weekdays.<br><br>Every coffee = 1 extra glass of water to offset ADH inhibition.<br><br>Starbucks stays as a 1–2x/week treat, not daily.</div>
+      </div>
+      <div class="card" style="background:rgba(42,157,143,0.04);border-color:rgba(42,157,143,0.2);">
+        <div style="font-weight:600;color:var(--zta);margin-bottom:8px;">💡 Dorm Hydration Hacks</div>
+        <div style="font-size:0.81rem;color:var(--muted);line-height:1.75;">• 40oz Stanley/Hydro Flask — fill it twice, done.<br>• Squeeze orange or lemon in water to make it taste like something.<br>• LaCroix / Bubly sparkling water counts and satisfies soda cravings.<br>• Eating your orange at lunch is also hydrating.<br>• 3 phone alarms: 10am, 2pm, 6pm.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ WORKOUT ═══ -->
+<div id="tab-workout" class="tab-content">
+  <div class="card card-rose" style="background:rgba(232,147,122,0.04);margin-bottom:14px;">
+    <div style="font-weight:600;color:var(--rose);margin-bottom:8px;">🦵 Knee-Safe Throughout — And Actually Better for Your Goals</div>
+    <div style="font-size:0.82rem;color:var(--muted);line-height:1.75;">Skating creates a very specific pattern: tight IT band, weak VMO, lateral patellar tracking issue. Deep squats and lunges load exactly what's damaged. Here's the good news: <strong style="color:var(--unc-dark);">hip thrusts have higher glute EMG activation than any squat in existence.</strong> Removing knee-dominant exercises doesn't hurt your bubble butt goal — it might accelerate it because you can load heavier without pain.</div>
+  </div>
+  <div class="card" style="background:rgba(168,153,196,0.07);border-color:rgba(168,153,196,0.22);margin-bottom:24px;">
+    <div style="font-weight:600;margin-bottom:8px;">🧘 Pilates — No Studio Needed Right Now</div>
+    <div style="font-size:0.82rem;color:var(--muted);line-height:1.75;">Mat Pilates on YouTube is genuinely as effective as a studio for your goals and stage. <strong style="color:var(--unc-dark);">Move with Nicole + Lottie Murphy</strong> — both free, both excellent, both knee-friendly. Get a $12–15 resistance loop band from Amazon. When you want a studio: search <strong style="color:var(--unc-dark);">Club Pilates</strong> or <strong style="color:var(--unc-dark);">Solidcore</strong> near Chapel Hill — free first class, student rates available.</div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div style="font-weight:600;margin-bottom:12px;">📈 VO₂ Max: 34 → 45+</div>
+    <div style="font-size:0.82rem;color:var(--muted);margin-bottom:14px;line-height:1.7;">Your incline walk stays in Zone 3 (~150 BPM). VO₂ max rises in Zone 4–5 (170–200 BPM). <strong style="color:var(--unc-dark);">The stationary bike is your tool — the only cardio machine that reaches maximal HR with zero knee compression force.</strong></div>
+    <div class="vo2-label"><span>Current: ~34</span><span style="color:var(--zta);">Target: 45+</span><span style="color:var(--muted);">Elite: 55+</span></div>
+    <div class="vo2-track"><div class="vo2-fill" style="width:62%"></div></div>
+    <div style="margin-top:18px;display:grid;gap:3px;">
+      <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Heart Rate Zones (Max: 190–205 BPM)</div>
+      <div class="hr-zone"><span class="zone-name">Zone 2 – Fat Burn</span><div class="zone-track"><div class="zone-fill" style="width:40%;background:var(--zta)"></div></div><span class="zone-range" style="color:var(--zta)">114–133</span></div>
+      <div class="hr-zone"><span class="zone-name">Zone 3 – Aerobic (current walk)</span><div class="zone-track"><div class="zone-fill" style="width:60%;background:var(--gold)"></div></div><span class="zone-range" style="color:var(--gold)">133–152</span></div>
+      <div class="hr-zone"><span class="zone-name">Zone 4 – Threshold ★VO₂</span><div class="zone-track"><div class="zone-fill" style="width:80%;background:var(--rose)"></div></div><span class="zone-range" style="color:var(--rose)">152–171</span></div>
+      <div class="hr-zone"><span class="zone-name">Zone 5 – Max VO₂ ★★</span><div class="zone-track"><div class="zone-fill" style="width:96%;background:#c0392b"></div></div><span class="zone-range" style="color:#c0392b">171–205</span></div>
+    </div>
+  </div>
+
+  <div class="sh"><div class="sh-eye">Program</div><div class="sh-title">Sophie's Weekly Schedule</div></div>
+  <div style="font-size:0.81rem;color:var(--muted);margin-bottom:14px;">45–60 min max. All knee-safe. Large chest accommodated — no jumping or unsupported bouncing. Good sports bra on bike days.</div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="workout-day">
+      <div class="wd-day" style="color:var(--unc);">Monday</div>
+      <div><div class="wd-name">Hip-Dominant Glute Strength 🍑</div>
+      <div class="wd-detail">Barbell hip thrusts 4×12–15 · Romanian deadlifts 3×10 · Cable kickbacks 3×15/leg · Abductor machine 3×20 · High-foot leg press shallow range 3×12</div>
+      <div class="wd-note">No squatting below parallel. No lunges. Hip thrust is the king of glute building — this is where the bubble butt shape comes from.</div></div>
+    </div>
+    <div class="workout-day">
+      <div class="wd-day" style="color:var(--gold);">Tuesday</div>
+      <div><div class="wd-name">Cycling HIIT — VO₂ Builder 🚴</div>
+      <div class="wd-detail">Stationary bike. 5 min warm up. Then: 30 sec ALL OUT (resistance 8–10) → 90 sec easy. 8 rounds to start, build to 12. 5 min cool down. Total: ~35 min. Target HR: 175–200.</div>
+      <div class="wd-note">Zero knee compression at any intensity on the bike. This is where your VO₂ goes up.</div></div>
+    </div>
+    <div class="workout-day">
+      <div class="wd-day" style="color:var(--zta);">Wednesday</div>
+      <div><div class="wd-name">Mat Pilates — Core + Knee Rehab 🧘</div>
+      <div class="wd-detail">30–40 min: Move with Nicole or Lottie Murphy. Focus: hundred, roll-up, single leg stretch, side-lying leg series, clamshells with band, glute bridges. Finish: 10 min IT band + hip flexor stretching.</div>
+      <div class="wd-note">Directly rebuilds VMO strength — the inner quad muscle that skating weakened. Knee rehab disguised as Pilates.</div></div>
+    </div>
+    <div class="workout-day">
+      <div class="wd-day" style="color:var(--unc-dark);">Thursday</div>
+      <div><div class="wd-name">Upper Body + Core (Gym) 💪</div>
+      <div class="wd-detail">Seated cable rows 3×12 · Lat pulldowns 3×12 · Seated dumbbell press 3×10 · Chest-supported rows 3×12. Core: Dead bugs 3×10/side · Pallof press · Bear hold · Side planks.</div>
+      <div class="wd-note">Zero lower body load — full knee rest day. Everything seated or chest-supported for comfort.</div></div>
+    </div>
+    <div class="workout-day">
+      <div class="wd-day" style="color:var(--unc);">Friday</div>
+      <div><div class="wd-name">Glute Volume Day + Incline Walk 🍑🚶</div>
+      <div class="wd-detail">Single-leg hip thrusts 3×10/leg · Sumo deadlift 3×8 (wide stance minimizes knee travel) · Glute bridges with band 3×20 · Seated abductor 3×20. Finish: her existing incline 12 walk, 20–25 min.</div>
+      <div class="wd-note">Heavier than Monday — progressive overload builds the shape. Keeps her existing walk habit on an easy day.</div></div>
+    </div>
+    <div class="workout-day">
+      <div class="wd-day" style="color:var(--gold);">Saturday</div>
+      <div><div class="wd-name">Pilates + Steady Bike 🧘🚴</div>
+      <div class="wd-detail">20 min mat Pilates (glute + core focus) → 20 min steady bike Zone 3 (HR ~145–160, not HIIT — aerobic base building). Under 45 min total.</div>
+      <div class="wd-note">Two disciplines in one efficient session. Good for a busy Saturday.</div></div>
+    </div>
+    <div class="workout-day">
+      <div class="wd-day" style="color:var(--muted);">Sunday</div>
+      <div><div class="wd-name">Full Rest 😴</div>
+      <div class="wd-detail">Non-negotiable. Pre-med brain + training body both need full recovery. Optional: gentle stretch, slow walk, 10 min foam rolling IT band + calves.</div>
+      <div class="wd-note">Protecting this day is part of the program, not cheating on it.</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:grid;gap:0;">
+      <div class="swap-row" style="font-size:0.75rem;font-weight:700;padding-bottom:8px;"><span style="color:#c0392b;">❌ Removed (knee stress)</span><span style="color:var(--zta);">✅ Replaced with</span></div>
+      <div class="swap-row"><div class="swap-out">Bulgarian split squats</div><div class="swap-in">Single-leg hip thrusts — same challenge, zero knee load</div></div>
+      <div class="swap-row"><div class="swap-out">Walking lunges</div><div class="swap-in">Cable kickbacks — hip extension only, no knee bend</div></div>
+      <div class="swap-row"><div class="swap-out">Deep back squats</div><div class="swap-in">Sumo deadlift — hip-dominant, knee travel minimal</div></div>
+      <div class="swap-row"><div class="swap-out">Rowing machine (knee drive)</div><div class="swap-in">Stationary bike — same cardio, no knee torque</div></div>
+      <div class="swap-row"><div class="swap-out">High-resistance elliptical</div><div class="swap-in">Stationary bike only for HIIT</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="background:rgba(168,153,196,0.06);border-color:rgba(168,153,196,0.2);margin-bottom:20px;">
+    <div style="font-weight:600;margin-bottom:10px;">🦵 Daily 5-Min Knee Care (Do Every Day — This Actually Works)</div>
+    <div style="font-size:0.81rem;color:var(--muted);line-height:1.8;"><strong style="color:var(--unc-dark);">Terminal Knee Extensions (TKEs)</strong> — band behind knee, straighten from 30° bend. 3×15. Directly targets VMO — most important exercise for your specific knee pattern.<br><br><strong style="color:var(--unc-dark);">Straight Leg Raises</strong> — lie flat, raise one leg 12 inches, hold 2 sec. 3×15. Quad strength with zero knee flexion = zero pain.<br><br><strong style="color:var(--unc-dark);">IT Band Foam Roll</strong> — 60 sec each side. Lateral patellar tracking from skating is driven by a tight IT band. Rolling reduces this significantly.<br><br><strong style="color:var(--unc-dark);">Calf Raises</strong> — 2×20. Reduces patellar tendon load by distributing force through the gastrocnemius.<br><br>Do these while coffee brews. 5 minutes. Real knee improvement within 2–3 weeks.</div>
+  </div>
+
+  <div class="sh"><div class="sh-eye">Progression</div><div class="sh-title">3 Phases</div></div>
+  <div class="phase-card"><div class="phase-name">Phase 1 — Rebuild (Weeks 1–4)</div><div class="phase-wks">Light weight · Form focus · 8 HIIT intervals · Knee rehab daily</div><div class="phase-desc">Hydration and fiber changes happening at the same time. Digestion improves in week 1–2. Knee pain decreases. Habit forming before adding intensity.</div></div>
+  <div class="phase-card p2"><div class="phase-name">Phase 2 — Build (Weeks 5–10)</div><div class="phase-wks">Progressive overload · 10–12 HIIT rounds · Heavier hip thrusts</div><div class="phase-desc">Increase hip thrust weight every 1–2 weeks. VO₂ measurably improving. Glute growth visible. Abs appearing. Energy consistent and crashes gone.</div></div>
+  <div class="phase-card p3"><div class="phase-name">Phase 3 — Peak (Weeks 11–16)</div><div class="phase-wks">Athletic performance · Consider a studio · VO₂ 42–47</div><div class="phase-desc">If knees are better, cautiously add goblet squats (shallow) and step-ups. Body transformation substantial. She feels like the competitive athlete she always was.</div></div>
+
+  <div class="card card-rose" style="background:rgba(232,147,122,0.04);margin-top:16px;">
+    <div style="font-weight:600;color:var(--rose);margin-bottom:10px;">🍑 The Bubble Butt Blueprint</div>
+    <div style="font-size:0.82rem;color:var(--muted);line-height:1.75;">The specific round, projected bubble shape comes from developing the <strong style="color:var(--unc-dark);">gluteus maximus lower fibers + gluteus medius</strong> together. Hip thrusts at full extension hit the lower glute max (the projection). Abductor machine + clamshells develop the glute med (the side roundness and "shelf"). This combination creates the shape, not just size.<br><br>Hip thrust progression: <strong style="color:var(--unc-dark);">bodyweight → bar (45lb) → 95lb → 135lb+ over 3 months.</strong> Her chicken-heavy diet provides the protein. The shape comes from the load, not the cardio. This is the formula.</div>
+  </div>
+</div>
+
+<!-- ═══ GOALS ═══ -->
+<div id="tab-goals" class="tab-content">
+  <div class="sh"><div class="sh-eye">The Vision</div><div class="sh-title">What Sophie Is Working Toward</div></div>
+  <div class="goals-grid" style="margin-bottom:32px;">
+    <div class="goal-card"><div class="goal-num" style="color:var(--unc);">2.5L</div><div class="goal-lbl">Water daily</div><div class="goal-sub">Current: ~&lt;500ml</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:var(--zta);">25g</div><div class="goal-lbl">Fiber per day</div><div class="goal-sub">Current: ~5g</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:var(--gold);">45+</div><div class="goal-lbl">VO₂ Max</div><div class="goal-sub">Current: ~34</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:var(--rose);">6</div><div class="goal-lbl">Workouts/week</div><div class="goal-sub">Current: ~3</div></div>
+  </div>
+
+  <div class="sh"><div class="sh-eye">Timeline</div><div class="sh-title">What Happens When</div></div>
+  <div class="tip-row"><div class="tip-icon">📅</div><div><div class="tip-bold">Days 3–5: Digestion noticeably better</div><div class="tip-text">Water + chia seeds alone change your bathroom situation within the first week. Soluble fiber works fast when paired with adequate hydration. This isn't slow — it's almost immediate.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">📅</div><div><div class="tip-bold">Week 2: The afternoon crash disappears</div><div class="tip-text">Stable blood sugar from fiber-slowed glucose absorption means the 2pm wall starts fading. You stop needing the energy drink because you're not crashing into needing it.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">📅</div><div><div class="tip-bold">Weeks 3–4: Knee pain decreasing</div><div class="tip-text">Daily TKE + leg raise rehab rebuilds the VMO. IT band foam rolling reduces lateral tracking pull. Most skater knees show real improvement within 3–4 weeks of consistent daily work.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">📅</div><div><div class="tip-bold">Weeks 6–8: Body composition changes visible</div><div class="tip-text">Glute development from progressive hip thrust loading. Reduced bloating from healthy gut. Core definition from Pilates. VO₂ improving — workouts feel easier at the same effort level.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">📅</div><div><div class="tip-bold">Months 3–4: Full transformation</div><div class="tip-text">VO₂ 42–47. Bubble butt shape from heavy hip thrusts and glute med work. Lean midsection from Pilates core + clean eating. Feels like the competitive athlete she's always been — with knees that actually work.</div></div></div>
+
+  <div class="sh" style="margin-top:32px;"><div class="sh-eye">Start Here</div><div class="sh-title">Week by Week</div></div>
+  <div class="tip-row"><div class="tip-icon">1️⃣</div><div><div class="tip-bold">Week 1: Water bottle + chia seeds</div><div class="tip-text">16oz water on waking + chia in yogurt. Set the 3 water reminders. That's the entire week 1 plan. Just those two things.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">2️⃣</div><div><div class="tip-bold">Week 1–2: Tuesday Cycling HIIT</div><div class="tip-text">Replace one treadmill session with stationary bike intervals. 8 rounds. This is what moves the VO₂ needle.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">3️⃣</div><div><div class="tip-bold">Week 2: Ag veggie loading + afternoon almonds</div><div class="tip-text">Broccoli, peas, lima beans as sides at every Ag lunch — they're there and free. Dark choc almonds replace the 3pm energy drink.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">4️⃣</div><div><div class="tip-bold">Week 2–3: Strength training (Mon + Fri)</div><div class="tip-text">Hip thrusts with just the bar to start. Form first, weight second. This is what builds the bubble butt shape — the most important training change.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">5️⃣</div><div><div class="tip-bold">Week 3: Wednesday Pilates + daily knee rehab</div><div class="tip-text">Move with Nicole on YouTube, 30 min. Plus 5-min daily TKE + leg raise routine while coffee brews. These two things will change how her knees feel.</div></div></div>
+  <div class="tip-row"><div class="tip-icon">6️⃣</div><div><div class="tip-bold">Week 4: Cap energy drinks to weekends only</div><div class="tip-text">By now, real nutrition is providing real energy. Breaking the caffeine dependency is much easier when you're not chronically depleted anymore.</div></div></div>
+
+  <div class="card" style="margin-top:28px;background:linear-gradient(135deg,rgba(75,156,211,0.07) 0%,rgba(42,157,143,0.07) 100%);border-color:rgba(75,156,211,0.2);text-align:center;padding:40px 32px;">
+    <div style="font-family:'Libre Baskerville',serif;font-size:1.5rem;color:var(--unc-dark);margin-bottom:14px;font-weight:400;">You already have an athlete's body, Sophie.</div>
+    <div style="font-size:0.84rem;color:var(--muted);line-height:1.85;max-width:520px;margin:0 auto;">Figure skating and competitive cheer demand more discipline, coordination, and physical output than most college athletes ever reach. Your body knows what high performance feels like. This plan just gives it the fuel it's been missing at school. The rest is already in you — and always has been.</div>
+    <div style="margin-top:24px;font-size:0.78rem;color:var(--unc);font-weight:600;letter-spacing:2px;text-transform:uppercase;">💙 With love — Nathan &nbsp;·&nbsp; Go Heels 🐏</div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="header-lattice"></div>
+<footer>
+  Made with <span class="heart">♥</span> by Nathan for <span class="unc-c">Sophie</span> &nbsp;·&nbsp; <span class="unc-c">UNC Chapel Hill</span> &nbsp;·&nbsp; Zeta Tau Alpha<br>
+  <span style="font-size:0.72rem;opacity:0.5;margin-top:6px;display:block;">Consult a physician before starting a new exercise program, especially with existing knee concerns.</span>
+</footer>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
